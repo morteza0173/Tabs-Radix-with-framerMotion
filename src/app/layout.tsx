@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import "./globals.css";
 import "@radix-ui/themes/styles.css";
+import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 
-const vazir = Vazirmatn({ subsets: ["latin"], weight: "400" });
+const vazir = Vazirmatn({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-vazir",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`${vazir.className} antialiased`}>
-        <Theme appearance="dark">{children}</Theme>
+      <body className={`${vazir.variable} antialiased`}>
+        <Theme appearance="dark" className={vazir.className}>
+          {children}
+        </Theme>
       </body>
     </html>
   );
